@@ -1,31 +1,20 @@
 <script setup>
 import TheHeader from "@/components/TheHeader.vue";
 import ProductCard from "@/components/ProductCard.vue";
-import {useProductStore} from './stores/useProductStore';
+import { useProductStore } from './stores/useProductStore';
 import { useCardStore } from "./stores/useCartStore";
 
-const productStore=useProductStore();
-const cartStore=useCardStore();
+const productStore = useProductStore();
+const cartStore = useCardStore();
 productStore.fill()
-
-const addToCart=(count,product)=>{
-  count=parseInt(count)
-  for(let index=0;index<count;index++){
-    cartStore.items.push(product)
-  }
-}
 </script>
 
 <template>
   <div class="container">
     <TheHeader />
     <ul class="sm:flex flex-wrap lg:flex-nowrap gap-5">
-      <ProductCard
-        v-for="product in productStore.products"
-        :key="product.name"
-        :product="product"
-        @addToCart="addToCart($event, product)"
-      />
+      <ProductCard v-for="product in productStore.products" :key="product.name" :product="product"
+        @addToCart="cartStore.addItems($event, product)" />
     </ul>
   </div>
 </template>
