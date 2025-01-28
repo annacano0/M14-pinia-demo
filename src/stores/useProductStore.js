@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-// nom i option object
+
 export const useProductStore=defineStore('ProductStore',{
     //state
     state:()=>{

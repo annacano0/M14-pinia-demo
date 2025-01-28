@@ -2,9 +2,18 @@
 import TheHeader from "@/components/TheHeader.vue";
 import ProductCard from "@/components/ProductCard.vue";
 import {useProductStore} from './stores/useProductStore';
+import { useCardStore } from "./stores/useCartStore";
 
 const productStore=useProductStore();
+const cartStore=useCardStore();
 productStore.fill()
+
+const addToCart=(count,product)=>{
+  count=parseInt(count)
+  for(let index=0;index<count;index++){
+    cartStore.items.push(product)
+  }
+}
 </script>
 
 <template>
@@ -15,6 +24,7 @@ productStore.fill()
         v-for="product in productStore.products"
         :key="product.name"
         :product="product"
+        @addToCart="addToCart($event, product)"
       />
     </ul>
   </div>
