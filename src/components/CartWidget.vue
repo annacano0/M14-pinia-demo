@@ -1,11 +1,13 @@
 <script setup>
 // imports
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import CartItem from "./CartItem.vue";
 import { useCartStore } from "@/stores/CartStore";
 // data
 const active = ref(false);
 const cartStore = useCartStore()
+
+const price = computed(() => cartStore.groupPrice);
 </script>
 <template>
   <div class="relative">
@@ -22,7 +24,7 @@ const cartStore = useCartStore()
             @updateCount="cartStore.setItemCount(items[0], $event)" @clear="cartStore.clearItem(name)" />
         </ul>
         <div class="flex justify-end text-2xl mb-5">
-          Total: <strong>$40</strong>
+          Total: <strong>{{ price }}€</strong>
         </div>
         <div class="flex justify-end">
           <AppButton class="secondary mr-2" @click="cartStore.$reset()">Clear Cart</AppButton>

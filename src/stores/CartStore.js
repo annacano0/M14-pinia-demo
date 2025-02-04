@@ -27,10 +27,8 @@ export const useCartStore=defineStore('CartStore',{
         isEmpty:(state)=>state.count===0,
         grouped:state=>groupBy(state.items,item=>item.name),
         groupCount:(state)=>state.grouped[name].length,
-        groupPrice:(state)=>{
-            let pricesArray =[]
-            state.items.forEach((price)=> pricesArray.push(price))
-            return pricesArray.reduce((ac, cu)=>ac + cu,0)
+        groupPrice: (state) => {
+            return state.items.reduce((total, item) => total + (item.price || 0), 0);
         }
     }
 
