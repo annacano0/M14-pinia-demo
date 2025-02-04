@@ -19,7 +19,7 @@ const cartStore = useCartStore()
       <div v-if="!cartStore.isEmpty">
         <ul class="items-in-cart">
           <CartItem v-for="(items, name) in cartStore.grouped" :key="name" :product="items[0]" :count="items.length"
-            @updateCount="cartStore.groupCount(name)" @clear="" />
+            @updateCount="cartStore.groupCount(name)" @clear="cartStore.clearItem(name)" />
         </ul>
         <div class="flex justify-end text-2xl mb-5">
           Total: <strong>$40</strong>
