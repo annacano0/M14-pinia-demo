@@ -17,6 +17,9 @@ export const useCartStore=defineStore('CartStore',{
         clearItem(itemName){
             const newArray = this.items.filter((item)=> item.name != itemName)
             this.items= newArray
+        },
+        setItemCount(item, count){
+            this.items.push(item)
         }
     },
     getters:{
