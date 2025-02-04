@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-export const useCardStore=defineStore('CardStore',{
+export const useCartStore=defineStore('CartStore',{
     //state
     state:()=>{
         return{
@@ -13,6 +13,14 @@ export const useCardStore=defineStore('CardStore',{
                 this.items.push(item)
             }
         }
+    },
+    getters:{
+        count(){
+            return this.items.length
+        },
+        isEmpty(){
+            return this.count===0
+        }
     }
-    
+
 })
