@@ -16,6 +16,24 @@ const addToCart = (count, product) => {
   })
 }
 productStore.fill();
+
+cartStore.$onAction(({
+  name,
+  store,
+  args,
+  after,
+  onError
+}) => {
+  if (name === "addItems") {
+    after(() => {
+      console.log(args[0])
+    })
+  }
+})
+cartStore.$subscribe((mutation, state) => {
+  console.log({ mutation })
+  console.log({ state })
+})
 </script>
 
 <template>
