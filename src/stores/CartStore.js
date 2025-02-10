@@ -11,10 +11,12 @@ export const useCartStore=defineStore('CartStore',{
     },
     actions:{
         addItems(count,item){
+            throw new Error("example error")
             count=parseInt(count);
             for(let index=0;index<count;index++){
-                this.items.push(item)
+                this.items.push({...item});
             }
+ 
         },
         clearItem(itemName){
             const newArray = this.items.filter((item)=> item.name != itemName)
@@ -33,7 +35,7 @@ export const useCartStore=defineStore('CartStore',{
         count:(state)=>state.items.length,
         isEmpty:(state)=>state.count===0,
         grouped:state=>groupBy(state.items,item=>item.name),
-        groupCount:(state)=>state.grouped[name].length,
+        groupCount:(state)=>state.grouped[0].length,
         groupPrice: (state) => {
             return state.items.reduce((total, item) => total + (item.price || 0), 0);
         }

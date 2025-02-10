@@ -26,7 +26,10 @@ cartStore.$onAction(({
 }) => {
   if (name === "addItems") {
     after(() => {
-      console.log(args[0])
+      console.log("cositas:", args[0])
+    })
+    onError((error) => {
+      console.log("Hello error:", error.message)
     })
   }
 })
