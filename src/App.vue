@@ -3,7 +3,6 @@ import TheHeader from "@/components/TheHeader.vue";
 import ProductCard from "@/components/ProductCard.vue";
 import { useProductStore } from "@/stores/ProductStore";
 import { useCartStore } from "@/stores/CartStore";
-import { reactive, ref } from "vue";
 const productStore = useProductStore();
 const cartStore = useCartStore();
 
