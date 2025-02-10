@@ -3,6 +3,7 @@ import {groupBy} from "lodash"
 import {useAuthUserStore} from './AuthUserStore.js'
 
 export const useCartStore=defineStore('CartStore',{
+    historyEnabled: true,
     //state
     state:()=>{
         return{
@@ -21,7 +22,7 @@ export const useCartStore=defineStore('CartStore',{
             const newArray = this.items.filter((item)=> item.name != itemName)
             this.items= newArray
         },
-        setItemCount(item, count){
+        setItemCount(item){
             this.items.push(item)
         },
         checkout(){
